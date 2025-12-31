@@ -1,31 +1,33 @@
 # Accretion-Disk-AGN
 
-A computational study of a thin accretion disk around a black hole, implemented using
-Newtonian gravity. This project models radial energy dissipation, disk luminosity, and
-the effect of mass accretion rate on disk structure, with all results saved as reproducible plots.
+Computational study of a **geometrically thin accretion disk** around a compact central
+object using a **Newtonian analytical thin-disk model**.  
+The project investigates **radial energy dissipation, disk luminosity, and scaling with
+mass accretion rate**, with results visualized through reproducible numerical plots.
 
 ---
 
-## Project Motivation
+## 🌌 Project Motivation
 
-Accretion disks are central to the physics of Active Galactic Nuclei (AGN), where matter
-spiraling into a supermassive black hole releases vast amounts of energy.
-This project focuses on understanding **where** and **how** that energy is dissipated
-within a thin disk, using a simplified but physically meaningful analytical model.
+Accretion disks play a central role in the physics of **Active Galactic Nuclei (AGN)**,
+where gravitational potential energy is converted into radiation as matter spirals inward
+toward a supermassive black hole.
 
-The goal is not realism at the GRMHD level, but clarity:
-to connect analytical disk theory with numerical implementation and visualization.
+This project focuses on understanding **where** and **how** energy is dissipated within
+a thin disk using a simplified but physically meaningful analytical model.  
+The goal is **not relativistic or GRMHD realism**, but clarity: connecting **analytical
+thin-disk theory** with numerical implementation and visualization.
 
 ---
 
-## Physical Model
+## 🧠 Physical Model
 
-We model a **geometrically thin, optically thick accretion disk** using normalized units
-(\( G = M = 1 \)).
+The disk is modeled as a **geometrically thin, optically thick accretion disk** using
+normalized units (\( G = M = 1 \)) and a Newtonian gravitational potential.
 
-### Energy Flux Profile
+### Radial Energy Flux
 
-The radial energy flux is given by the standard thin-disk expression:
+The local energy flux is given by the standard thin-disk expression:
 
 $$
 F(r) = \frac{3GM\dot{M}}{8\pi r^3}
@@ -33,59 +35,67 @@ F(r) = \frac{3GM\dot{M}}{8\pi r^3}
 $$
 
 where:
-- $\dot{M}$ is the mass accretion rate  
-- $r_{\mathrm{in}}$ is the inner disk radius (ISCO-like proxy)
+- \( \dot{M} \) is the mass accretion rate  
+- \( r_{\mathrm{in}} \) is the inner disk radius (used here as an ISCO-like proxy)
 
+This formulation captures the **qualitative radial structure** of energy dissipation in
+classical thin-disk models.
 
 ---
-## Numerical Implementation
 
-The disk is discretized radially between an inner and outer radius.
-From the energy flux, we compute:
+## 💻 Numerical Implementation
 
-**Differential luminosity**
+The disk is discretized radially between prescribed inner and outer radii.
+From the energy flux profile, the following quantities are computed:
 
-dL/dr = 2 π r F(r)
+- **Differential luminosity**
+$$
+\frac{dL}{dr} = 2\pi r F(r)
+$$
 
-**Total disk luminosity** via numerical integration
+- **Total disk luminosity** via numerical integration  
+- **Cumulative luminosity** to determine where most energy is released  
 
-**Cumulative luminosity** to determine where most energy is released
+A parameter study is performed by varying the mass accretion rate \( \dot{M} \).
 
-A parameter study is performed by varying the accretion rate (Ṁ).
+---
 
+## 📊 Results and Validation
 
-## Results
-
-### Energy Flux Profile
-Energy dissipation is strongly concentrated toward the inner disk radii.
+### Radial Energy Flux
+Energy dissipation is strongly concentrated toward the inner disk radii, consistent with
+thin-disk analytical expectations.
 
 ### Differential Disk Luminosity
-Most of the luminosity originates close to the black hole.
+The majority of the emitted luminosity originates close to the central object.
 
 ### Cumulative Luminosity
-A large fraction of the total luminosity is emitted within a small inner region of the disk.
+A significant fraction of the total luminosity is produced within a relatively small
+inner region of the disk.
 
-### Accretion Rate Study
-Increasing \( \dot{M} \) scales the energy flux uniformly, preserving the radial profile shape.
+### Accretion Rate Scaling
+Varying \( \dot{M} \) scales the energy flux and luminosity **linearly**, while preserving
+the radial profile shape, providing a key **consistency check** of the implementation.
 
 All plots are automatically saved in the `results/plots/` directory.
 
 ---
 
-## Scientific Insights
+## 🔬 Scientific Interpretation
 
-- Energy dissipation in accretion disks is strongly concentrated toward the inner radii.
-- The total luminosity scales linearly with mass accretion rate.
-- Log–log flux profiles reveal power-law behavior expected from analytical disk theory.
-- This model captures the qualitative physics of thin-disk accretion relevant to AGN environments.
+- Radial energy dissipation follows the expected \( r^{-3} \)–dominated behavior of
+  classical thin-disk models.
+- Total disk luminosity scales linearly with mass accretion rate, as predicted analytically.
+- Cumulative luminosity profiles demonstrate that inner disk regions dominate energy output.
+- The numerical results are **qualitatively consistent with canonical thin-disk theory**,
+  validating the implementation at an exploratory level.
 
 ---
 
-## Project Structure
-
+## 📂 Project Structure
 Accretion-Disk-AGN/
 │
-├── acceleration_disk.py # Main simulation and analysis script
+├── accretion_disk.py # Main simulation and analysis script
 ├── README.md # Project documentation
 └── results/
 └── plots/
@@ -97,18 +107,27 @@ Accretion-Disk-AGN/
 
 ---
 
-## Future Extensions
+## 🎯 Purpose and Scope
 
-- Inner radius variation as a proxy for black hole spin
-- Radiative efficiency calculation
-- Connection to observed AGN spectral energy distributions
-- Inclusion of relativistic correction factors
+This project serves as a **conceptual and computational exploration** of thin-disk
+accretion physics, forming a foundation for more advanced studies involving:
+
+- Relativistic correction factors  
+- Spin-dependent inner disk radii  
+- Radiative efficiency estimates  
+- Connections to observed AGN spectral energy distributions  
+
+The emphasis is on **physical interpretation and numerical consistency**, rather than
+high-fidelity astrophysical realism.
 
 ---
 
-## Author
+## 👤 Author
 
 **Manya Johari**  
-Aerospace Engineering (B.Tech)  
-Astrophysics & Computational Modelling Enthusiast
+Undergraduate – Aerospace Engineering  
+Interests: Computational astrophysics and numerical modeling
+
+
+
 
